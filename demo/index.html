@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Canvas Sprite Animation</title>
+	<style>
+		html, body {
+			position: relative;
+			padding: 0;
+			margin: 0;
+			height: 100%;
+			width: 100%;
+			overflow: hidden;;
+		}
+		#giftbox {
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			width: 300px;
+			height: 300px;
+			margin: -150px 0 0 -150px;
+		}
+	</style>
+</head>
+<body>
+	<!-- canvas size -->
+	<canvas id="giftbox" width="600" height="600"></canvas>
+
+	<script src="https://s4.ssl.qhres.com/static/d90cec47b3fdeee8.js"></script>
+	<script src="../src/sanim.js"></script>
+	
+	<script>
+		let sprites = ['10004_31.png','10007_31.png','10032_32.png','10034_31.png','10046_36.png','10047_31.png','10053_32.png','10057_31.png','10061_31.png','10073_30.png','10151_30.png','10153_30.png','10195_32.png','10196_31.png','10197_31.png','10198_30.png','10201_30.png','10211_30.png','10212_30.png','10213_30.png','10214_30.png','10215_30.png','10217_30.png','10221_30.png','10222_30.png','20005_31.png','20006_30.png','90026_31.png','90035_33.png','90043_32.png','90044_37.png','90045_33.png','90046_30.png','90049_31.png','90051_30.png','90052_31.png','90065_30.png','90066_30.png','90077_32.png','90096_31.png','90101_30.png','90103_30.png','90106_30.png','90110_30.png','90116_30.png','90117_30.png','90118_30.png','90119_30.png','90130_30.png','90133_31.png','90173_30.png','90174_30.png','90176_30.png','90177_30.png'];
+		
+		function drawGift(sprites, i) {
+			sprites = sprites || [];
+			i = i || 0;
+
+			if( i >= sprites.length ) {
+				return ;
+			}
+
+			new SAnim('#giftbox', {
+				src: '../tool/sprite/' + sprites[i],
+				xy: 'y',
+				fps: 10, 
+				repeat: 10, 
+				// padding: 0, 
+				callback: () => {
+					drawGift(sprites, i+1)
+				}
+			}).animate();
+		}
+
+		drawGift(sprites, 0);
+		
+	</script>
+</body>
+</html>
